@@ -251,8 +251,10 @@ The PEP-8 recommended line length is less than 80 characters per line to allow r
 
 Blank lines are used to group part of your program, but should not be abused. 
 
+
 # 5 - If statements
 Programming almost always involves checking for certain conditions and deciding which action to take based on these. 
+
 
 A Python `if` statement is based on an expression that can be evaluated as either `True` or `False`. This is called the conditional test. If the conditional test evaluates to True, the (indented) code following the if statement is executed. If it evaluates to false, the code following the if is ignored and, if there is an `else:`, the code following it is executed.
 ```
@@ -262,9 +264,11 @@ for car in cars:
 	else:
 		print(car)
 ```
+
 The equality operator `==` returns `True` if the values on each side of it are the same and `False` if they are different. (Difference between expressions and statements.)
 
 The inequality operator `!=` does the opposite.
+
 
 You can also include the order operators `<`, `>`, `<=` and `>=` in conditional statements.
 
@@ -278,6 +282,8 @@ False
 >>> age_0 >= 10 or age_1 >= 10
 True
 ```
+
+
 To check if a value is in a list, you can use the keyword `in`:
 ```
 if user in banned_users:
@@ -287,6 +293,7 @@ if user not in banned_users:
 	print("login succesful")
 ```
 The `not` keyword returns the opposite value of the following logical expression.
+
 
 A conditional test is also called a boolean expression. You can have boolean type variables, that can only have `True` or `False` as values and are used to track binary conditions.
 ```
