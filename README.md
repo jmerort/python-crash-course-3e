@@ -5,5 +5,5 @@ I will be posting here my solutions to the simple excercises that appear through
 
 To run any of the programs posted here, just type in the command line: 
 ```
-python3 [name.py]
+python3 [program_name.py]
 ```
