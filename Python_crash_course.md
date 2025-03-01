@@ -1,10 +1,4 @@
-09-02-2025 15:26
-
-Estado: #Niño 
-
-Resumen: Apuntes de este libro de Python
-
-# Notas
+# Notes
 # 1 - Getting started
 You can run lines of Python code using the interpreter from a terminal window, instead of writing and running a whole program.
 
@@ -388,5 +382,5 @@ rm -rf .git/
 ```
 This will not delete the current project files, but you will lose all previous commit info and the ability to go back to previous versions. After deleting the history, you can start tracking changes again by following the same steps as before.
 
-# Referencias
+# References
 PYTHON CRASH COURSE, 3RD EDITION. (2023) by Eric Matthes.
