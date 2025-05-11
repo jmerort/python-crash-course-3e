@@ -15,7 +15,7 @@ I will modify excercise 7.4
 
 # Version 1
 
-"""
+
 topping = ''
 
 while topping != 'quit':
@@ -24,7 +24,7 @@ while topping != 'quit':
         print("Done. Enjoy your pizza!")
     else:
         print(f"{topping.title()} added to your pizza.")
-"""
+
 
 
 # Version 2
@@ -45,6 +45,7 @@ while active:
 
 # Version 3
 
+"""
 topping = ''
 
 while True:
@@ -54,3 +55,4 @@ while True:
         break;
     else:
         print(f"{topping.title()} added to your pizza.")
+"""
