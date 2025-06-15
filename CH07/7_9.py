@@ -31,7 +31,7 @@ while sandwich_orders:
     print(f"Making a {sandw} sandwich...")
     finished_sandwiches.append(sandw)
 
-# Print orders make
+# Print orders made
 print("\nList of sandwiches made:")
 for sandw in finished_sandwiches:
     print(f"\t{sandw.title()}")
