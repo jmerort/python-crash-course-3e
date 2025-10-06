@@ -11,7 +11,7 @@ Oct 2025
 """
 
 def make_shirt(size, message):
-    print(f"Create a size {size} shirt with the following message printed on it: {message}.\n")
+    print(f"Create a size {size} shirt with the message: {message}.\n")
 
 make_shirt("M", "Just Do It")
 make_shirt(message="Universidad de VALLADOLID", size="L")

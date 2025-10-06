@@ -40,7 +40,7 @@ greet_user("Adapa")
 The (generic) values specified on a function definition are its **parameters**, while the (specific) values passed to a function in its call are called **arguments**. People often mistake these meanings. 
 
 ## 8.2 - Passing arguments
-You can passmany arguments to a function in a variety of ways: positional argument, keywords, lists, dictionaries...
+You can pass many arguments to a function in a variety of ways: positional argument, keywords, lists, dictionaries...
 
 When you call a function and give it a series of values, the function matches those with its arguments based on their order. E.g. if you call `function(a, b)`, `a` is assigned to the first argument of `function()` and `b` to the second. Values matchen in this way are called **positional arguments**. The order of arguments matters when they are passed in this way.
 
@@ -59,5 +59,3 @@ def describe_movie(title, genre='unknown'):
 describe_movie("Vertigo", "Thriller")
 describe_movie("Muholland Drive")
 ```
-
-
