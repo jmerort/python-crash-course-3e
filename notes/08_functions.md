@@ -7,7 +7,7 @@ ___
 
 # 8 - Functions
 ## 8.1 - Defining a function
-**Functions** are named blocks of code that perform a particular task. They can be called independently at any point of a program, instead of having to write the same block of code many times. They can also be stored in other files, which can be imported into other programs.
+**Functions** are named blocks of code that perform a particular task. They can be called independently at any point of a program, instead of having to write the same block of code many times. They can also be stored in other files, which can be imported into other programs. When we need to perform the same action multiple times, even if with some variations, we ought to use functions.
 
 ```
 def greet_user():             # Function definition
@@ -39,6 +39,7 @@ greet_user("Adapa")
 
 The (generic) values specified on a function definition are its **parameters**, while the (specific) values passed to a function in its call are called **arguments**. People often mistake these meanings. 
 
+
 ## 8.2 - Passing arguments
 You can pass many arguments to a function in a variety of ways: positional argument, keywords, lists, dictionaries...
 
@@ -53,9 +54,34 @@ This makes function calls clearer, as you know what each argument does instead o
 
 You can give **default values** to function parameters. If no values are given for their arguments in the function calls, the default values will be used. Thus, some function arguments can be optional. All parameters with default values must appear after the ones without them in the function definition, to allow the positional argument syntax to work (when a function is called using only the necessary arguments).
 ```
-def describe_movie(title, genre='unknown'):
-    print(f"I just saw the movie {title}.\nIt's genre is {genre}.)
+def describe_movie(title, genre=None):
+    print(f"I just saw the movie {title}.")
+	if genre: # If the optional argument genre has been given
+	    print(It's genre is {genre}.)
 
 describe_movie("Vertigo", "Thriller")
 describe_movie("Muholland Drive")
+```
+
+
+## 8.3 - Return values
+Most functions are used to process some data and return a value or a set of values, called **return values**. The `return` statement of a function is followed by a local value that is sent to the line that called the function. For example:
+```
+def sum(a, b):
+	return a + b # send a + b to the caller
+
+sum(1, 1) # receive 1 + 1 from the called function
+```
+
+Funcions can return any kind of data, including more complex structures like lists and dictionaries.
+```
+def build_person(first_name, last_name):
+    """
+	Return a dictionary of information about a person.
+	"""
+    person = {'first': first_name, 'last': last_name}
+    return person
+
+musician = build_person('jimi', 'hendrix')
+print(musician)
 ```
