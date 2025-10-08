@@ -85,3 +85,10 @@ def build_person(first_name, last_name):
 musician = build_person('jimi', 'hendrix')
 print(musician)
 ```
+
+## 8.4 - Passing a list
+Functions can modify the lists that are passed to them. If you don't want a function to modify a list (globally), you can use slice notation to pass a copy of that list:
+```
+print_models(unprinted_designs[:], completed_models) # Pass a copy of the whole unprinted_designs list
+```
+If you don't specifically need this, however, it's more efficient to just pass the actual list. This avoids the computational cost of creating the copy, particularly on large lists.
