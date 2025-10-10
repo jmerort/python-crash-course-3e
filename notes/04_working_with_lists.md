@@ -8,7 +8,7 @@ ___
 # 4 - Working with lists
 In this chapter we'll learn how to work efficiently with lists, regardless of how many elements they have, by looping through them.
 
-## Looping through a list
+## 4.1 - Looping through a list
 To perform the same action for every element of a list, Python uses the `for` loop, which assigns to a given variable the values of every list element, one at a time. 
 ```
 names = [Matthew, Mark, Luke, John]
@@ -17,7 +17,7 @@ for name in names:
 ```
 Every indented line following the `:` is considered to be inside the loop and will be executed every iteration. In Python, therefore, **indentation** is not just aesthetic, it indicates how a group of statements is realted to the rest pf the program. It thus forces the programmer to express the program structure in a visual way. It's use is similar to curly brackets in other languages like C/C++.
 
-## Making numerical lists
+## 4.2 - Making numerical lists
 To create a list of ordered integers, you can use the `range()` function, which returns a range of integers, which can be converted into a list or used in a loop
 ```
 >>> a = range(0,5)
@@ -62,7 +62,7 @@ A **list comprehension** is a compact way of creating numerical lists, which use
 ```
 This is a bit confusing at first, but if you remember the syntax it can be useful, and  people very often use it in their code.
 
-## Working with part of a list
+## 4.3 - Working with part of a list
 A subset of the elements of a list is called a **slice**. To make a slice, you specify the index of the first and last elements of the slice, the last one not included. 
 ```
 >>> players = ['charles', 'martina', 'michael', 'florence', 'eli']
@@ -90,7 +90,7 @@ old_list = ['item_1', 'item_2', 'item_3']
 new_list = old_list[:] #assign a copy of the entire old list
 ```
 
-## Tuples
+## 4.4 - Tuples
 To create a list of items that cannot change, you define a **tuple**. They return error when the program tries to change the value of any of its members. (You can redefine a tuple variable, assigning it another tuple, though.)
 ```
 dimensions = (200, 50)
@@ -105,7 +105,9 @@ or
 tup = (200,)
 ```
 
-## Styling your code
+There is a subtle difference between how lists and tuples are used in real world Python code that can help you decide which one to use in a given case: "Lists have order, tuples have structure". This means that typically a tuple would be used to store heterogeneous but related data, for example, a person's credit score and age, while a list would store different instances of the same magnitude, such as the ages of many people.
+
+## 4.5 - Styling your code
 As almost any code will be read much more often that it will be written, it's always a good idea to aim for code that's easier to read, rather than easier to write. 
 
 The PEP 8 document is the standard Python style guide. It contains the aesthetic conventions that professional Python programmers follow. 

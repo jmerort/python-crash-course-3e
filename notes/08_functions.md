@@ -92,3 +92,36 @@ Functions can modify the lists that are passed to them. If you don't want a func
 print_models(unprinted_designs[:], completed_models) # Pass a copy of the whole unprinted_designs list
 ```
 If you don't specifically need this, however, it's more efficient to just pass the actual list. This avoids the computational cost of creating the copy, particularly on large lists.
+
+## 8.5 - Passing an arbitrary number of arguments
+Python allows you to define functions that can accept an arbitrary number of arguments, using this notation:
+```
+def print_toppings(*toppings):
+	print("Selected toppings:)
+	for topping in toppings:
+		print(f"- topping")
+```
+The `*` prefix tells Python to create a tuple (see [Tuples](/notes/04_working_with_lists.md#44---tuples)) with the name `toppings` and whose content is however many arguments are given to the function when it's called.
+
+If a function has many parameters, the parameter that can accept an arbitrary number of arguments must be placed after any positional arguments. Keyword arguments may be placed after them, though.
+
+Any function can only have one arbitrary parameter.
+
+There is a more sophisticated use of the arbirary argument, used when you don't know what kind of information the user will be passing to the function. It uses the `**` prefix to **accept arbitrary keyword arguments**:
+```
+	def build_profile(first, last, **user_info):
+		"""Build a dictionary containing everything we know about a user."""
+		user_info['first_name'] = first
+		user_info['last_name'] = last
+		return user_info
+
+	user_profile = build_profile('albert', 'einstein',
+								location='princeton',
+								field='physics')
+	print(user_profile)
+```
+The double-asterisk tells the function to create a dictionary called `user-info` whose keys and values are the name-value pairs given to the function as keyword arguments, in this case: `location : princeton` and `field : physics`. This notation expects keyword arguments, so you can't give `user_info` any arguments with no names.
+
+As you begin to write Python programs, you will start by using the most common argument types and, as you progress, eventually move on to using the most efficient each time, but it's helpful to at least be aware of the different types, as you may see them in other people's code.
+
+## 8.6 - List of all argument types
