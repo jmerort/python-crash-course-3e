@@ -124,4 +124,29 @@ The double-asterisk tells the function to create a dictionary called `user-info`
 
 As you begin to write Python programs, you will start by using the most common argument types and, as you progress, eventually move on to using the most efficient each time, but it's helpful to at least be aware of the different types, as you may see them in other people's code.
 
-## 8.6 - List of all argument types
+## 8.6 - Storing your functions in modules
+You can use functions in other Python programs by storing them in files called **modules** and then importing them. This allows you to reuse functions in other programs, and also to hide the implementation details of your functions from other programmers, which can then just import your functions and use them by importing and then calling them, without having to worry about how they work.
+
+A module is a `.py` file that contains the code (functions, variables, classes) we want to import into other programs. 
+
+To **import an entire module** you use an `import` statement:
+```
+import pizza
+```
+Then, you can use any function (or element) from the `pizza.py` file by using the name of the module, followed by the name of the function, separated by a dot:
+```
+pizza.make_pizza("pepperoni")
+```
+To **import a specific function from a module** use the syntax:
+```
+from module_name import function_name
+```
+When importing in this way, you don't need to use the dot notation. You can import more than one function, separating them by commas.
+
+You can use the keyword `as` to import modules and functions using **aliases**. This helps prevent name clashes and also improve readability, by making names shorter. Aliases are typically short nicknames such as np (numpy), plt (matplotlib.pyplot), or pd (pandas).
+
+Lastly, Python has a way of importing every function in a module using the `*` notation:
+`from module_name import *`
+This imports every function in the given module and lets you use them without the dot notation. However, this method is not recommended, as the module may contain functions you don't know and whose names might unexpectedly clash with yours. Thus, you should only import entire modules or specific functions from them.
+
+## 8.7 - Styling functions
