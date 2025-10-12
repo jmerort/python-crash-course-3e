@@ -149,4 +149,18 @@ Lastly, Python has a way of importing every function in a module using the `*` n
 `from module_name import *`
 This imports every function in the given module and lets you use them without the dot notation. However, this method is not recommended, as the module may contain functions you don't know and whose names might unexpectedly clash with yours. Thus, you should only import entire modules or specific functions from them.
 
+All imports should be placed at the beginning of a file (except for any comments being placed at the top).
+
 ## 8.7 - Styling functions
+Function (as well as module) names should be descriptive and composed of lowercase letters and underscores. The first line after the function declaration should be a comment in the docstring format (see below) that can tell a user what the function does, which inputs it expects and which outputs it produces, if any, so that a user may use your function relying only on the name and docstring. If you use any keyword arguments in the function definition or call, there should be no spaces at both sides of the equal sign.
+
+```
+def make_pizza(toppings, size='M')
+	"""
+	Prints the ingredients of a Pizza, consisting of a list of toppings and a size, that can be 'S', 'M' or 'L'.
+
+	Inputs:
+	- toppings : List of string toppings
+	- size : 'S', 'M', or 'L' char
+	"""
+```
