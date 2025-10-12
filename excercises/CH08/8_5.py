@@ -11,6 +11,13 @@ Oct 2025
 """
 
 def describe_city(name, country="Spain"):
+    """
+    Prints a brief description of a city, consisting of the name and country.
+
+    Inputs:
+    - name : String containing the city's name.
+    - country : String containing the city's country, by default "Spain".
+    """
     print(f"{name.title()} is in {country.title()}.\n")
 
 

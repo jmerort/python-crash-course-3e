@@ -13,6 +13,6 @@ def display_message():
     Prints what i'm learning in this chapter.
     """
     print("In chapter 8 of the Python Crash Course, I've learned so far what a function is, "
-    "what its parts are and how to call it.")
+        "what its parts are and how to call it.")
 
 display_message()

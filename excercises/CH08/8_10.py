@@ -11,7 +11,18 @@ Oct 2025
 """
 
 def show_messages(messages):
+    """
+    Receives a list of messages, prints them all and returns a list of all
+    messages printed.
+
+    Inputs:
+    - messages : List of string messages
+
+    Outputs:
+    - sent_messages : List of all messages printed. Same list as input, but in reverse.
+    """
     sent_messages = []
+
     print("--LIST OF MESSAGES--")
     while messages:
         message = messages.pop()
