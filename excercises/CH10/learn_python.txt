@@ -1,0 +1,3 @@
+Pyhton is a modern programming language that is widely used today in all kinds of programs.
+It is an interpreted language, designed to be readable and easy to understand and learn.
+It was created by Guido van Rossum and it's currently on version 3.12.
