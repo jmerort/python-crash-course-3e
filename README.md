@@ -16,7 +16,7 @@ python -m venv myenv
 
 After it's created, activate the environment by running one of the following commands. If you are on Linux or Mac:
 ```
-source muenv/bin/activate
+source myenv/bin/activate
 ```
 
 If you are on Windows:
