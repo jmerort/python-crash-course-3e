@@ -39,7 +39,6 @@ def run_game():
         for bullet in bullets.copy():
             if bullet.rect.bottom == 0:
                 bullets.remove(bullet)
-        print(f"Bullet n : {len(bullets)}")
         
         # Update screen
         gf.update_screen(screen, ai_settings, ship, bullets)
