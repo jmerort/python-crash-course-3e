@@ -29,18 +29,9 @@ def run_game():
 
     # Start the main loop for the game
     while True:
-        # Handle the event loop
         gf.check_events(ai_settings, screen, ship, bullets)
-
         ship.update()
-        bullets.update()
-
-        # Get rid of bullets that have exited the screen
-        for bullet in bullets.copy():
-            if bullet.rect.bottom == 0:
-                bullets.remove(bullet)
-        
-        # Update screen
+        gf.update_bullets()
         gf.update_screen(screen, ai_settings, ship, bullets)
 
 run_game()
