@@ -57,11 +57,12 @@ def fire_bullet(ai_settings, screen, ship, bullets):
         bullets.add(new_bullet)
 
 
-def update_screen(screen, settings, ship, bullets):
+def update_screen(screen, settings, ship, alien, bullets):
     """draw the current elements onscreen"""
     # Draw screen color and ship 
     screen.fill(settings.bg_color)
     ship.blitme()
+    alien.blitme()
 
     # Redraw all bullets in their current positions
     for bullet in bullets.sprites():
