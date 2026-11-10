@@ -4,10 +4,13 @@ Module that defines the Alien (enemy) class
 """
 
 import pygame
+from pygame.sprite import Sprite
 
-class Alien:
+class Alien(Sprite):
     """Class to represent a single alien of the fleet"""
     def __init__(self, ai_settings, screen):
+        """Initialize alien and set its starting position"""
+        super().__init__()
         self.ai_settings = ai_settings
         self.screen = screen
 
