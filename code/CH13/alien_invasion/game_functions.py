@@ -7,6 +7,7 @@ import sys
 
 import pygame
 
+from ship import Ship
 from bullet import Bullet
 from alien import Alien
 
@@ -65,25 +66,38 @@ def get_number_aliens_x(ai_settings, alien_width):
     return number_aliens_x
     
 
-def create_alien(ai_settings, screen, aliens, alien_number):
-    """Create an alien and place it on the row"""
+def create_alien(ai_settings, screen, aliens, x_position, y_position):
+    """Create an alien and place it on the fleet"""
     alien = Alien(ai_settings, screen)
     alien_width = alien.rect.width
-    alien.x = alien_width + alien_number * 2 * alien_width
+    alien.x = x_position
     alien.rect.x = alien.x
+    alien.y = y_position
+    alien.rect.y = alien.y
     aliens.add(alien)
 
 
 def create_fleet(ai_settings, screen, aliens):
     """Draw a fleet of aliens to fill the first screen row"""
-    # Get n of aliens per row
+    # Get parameters
+    alien_height = Alien(ai_settings, screen).rect.height
+    alien_width = Alien(ai_settings, screen).rect.width
+    ship_height = Ship(ai_settings, screen).rect.height
+
+    # Get number of rows that can be drawn
+    available_space_y = ai_settings.screen_height - ship_height - (2 * alien_height)
+    number_rows = int(available_space_y / (2 * alien_height))
+    # Get number of aliens per row
     alien_width = Alien(ai_settings, screen).rect.width
     number_aliens_x = get_number_aliens_x(ai_settings, alien_width)
-    
-    # Create the first row of aliens
-    for alien_number in range(0, number_aliens_x):
-        # Create alien and place in on the row
-        create_alien(ai_settings, screen, aliens, alien_number)
+
+    for row_number in range(number_rows):
+        # Create the nth row of aliens
+        for alien_number in range(0, number_aliens_x):
+            # Create alien and place in on the row
+            x_position = alien_width + alien_number * 2 * alien_width
+            y_position = alien_height + row_number * 2 * alien_height
+            create_alien(ai_settings, screen, aliens, x_position, y_position)
 
 
 def update_screen(screen, settings, ship, aliens, bullets):
