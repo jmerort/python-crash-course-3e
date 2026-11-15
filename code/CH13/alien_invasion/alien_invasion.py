@@ -7,11 +7,10 @@ Main file of the game
 import sys
 
 import pygame
-from pygame.sprite import Group
 
 from settings import Settings
 from ship import Ship
-import game_functions as gf
+from bullet import Bullet
 
 class AlienInvasion():
     """Overall class to manage game assets and behavior."""
@@ -22,11 +21,18 @@ class AlienInvasion():
         self.clock = pygame.time.Clock()
         self.settings = Settings()
 
-        self.screen = pygame.display.set_mode(
-                (self.settings.screen_width, self.settings.screen_height))
+        # Set fullscreen
+        self.screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+        self.settings.screen_width = self.screen.get_rect().width
+        self.settings.screen_height = self.screen.get_rect().height
+
+        # Set windowed mode at the resolution selected in settings.py
+        #self.screen = pygame.display.set_mode(
+        #        (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Alien Invasion")
 
         self.ship = Ship(self) # Give an AlienInvasion instane as arg
+        self.bullets = pygame.sprite.Group()
 
         # Set the background color
         self.bg_color = (230, 230, 230)
@@ -37,6 +43,7 @@ class AlienInvasion():
         while True:
             self.check_events()
             self.ship.update()
+            self.bullets.update()
             self.update_screen()
             self.clock.tick(60)
 
@@ -59,6 +66,8 @@ class AlienInvasion():
             self.ship.moving_left = True
         if event.key == pygame.K_q:
             sys.exit()
+        if event.key == pygame.K_SPACE:
+            self.fire_bullet()
 
 
     def check_keyup_events(self, event):
@@ -68,11 +77,19 @@ class AlienInvasion():
             self.ship.moving_left = False
 
 
+    def fire_bullet(self):
+        """Create a new bullet and add it to the bullets group."""
+        new_bullet = Bullet(self)
+        self.bullets.add(new_bullet)
+
+
     def update_screen(self):
         """Update images onscreen and flip to a new screen."""
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()
-
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
+            
         # Make the most recently drawn screen visible.
         pygame.display.flip()
 
