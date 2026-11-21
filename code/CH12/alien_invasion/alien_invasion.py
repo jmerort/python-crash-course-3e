@@ -7,31 +7,106 @@ Main file of the game
 import sys
 
 import pygame
-from pygame.sprite import Group
 
 from settings import Settings
 from ship import Ship
-import game_functions as gf
+from bullet import Bullet
 
-def run_game():
-    """Initialize game and create a screen object"""
-    pygame.init()
+class AlienInvasion():
+    """Overall class to manage game assets and behavior."""
+    def __init__(self):
+        """Initilize the game and create game resources"""
+        pygame.init()
+        
+        self.clock = pygame.time.Clock()
+        self.settings = Settings()
 
-    ai_settings = Settings()
+        # Set fullscreen
+        self.screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+        self.settings.screen_width = self.screen.get_rect().width
+        self.settings.screen_height = self.screen.get_rect().height
 
-    screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
-    pygame.display.set_caption("Alien Invasion")
-    
-    # Make a ship
-    ship = Ship(ai_settings, screen)
-    # Make a group to store bullets in
-    bullets = Group()
+        # Set windowed mode at the resolution selected in settings.py
+        #self.screen = pygame.display.set_mode(
+        #        (self.settings.screen_width, self.settings.screen_height))
+        pygame.display.set_caption("Alien Invasion")
 
-    # Start the main loop for the game
-    while True:
-        gf.check_events(ai_settings, screen, ship, bullets)
-        ship.update()
-        gf.update_bullets(bullets)
-        gf.update_screen(screen, ai_settings, ship, bullets)
+        self.ship = Ship(self) # Give an AlienInvasion instane as arg
+        self.bullets = pygame.sprite.Group()
 
-run_game()
+        # Set the background color
+        self.bg_color = (230, 230, 230)
+
+
+    def run_game(self):
+        """Start the main loop for the game."""
+        while True:
+            self.check_events()
+            self.ship.update()
+            self.update_bullets()
+            self.update_screen()
+            self.clock.tick(60)
+
+
+    def check_events(self):
+        """Respond to keypresses and mouse events."""
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                self.check_keydown_events(event)
+            elif event.type == pygame.KEYUP:
+                self.check_keyup_events(event)
+
+
+    def check_keydown_events(self, event):
+        if event.key == pygame.K_RIGHT:
+            self.ship.moving_right = True
+        if event.key == pygame.K_LEFT:
+            self.ship.moving_left = True
+        if event.key == pygame.K_q:
+            sys.exit()
+        if event.key == pygame.K_SPACE:
+            self.fire_bullet()
+
+
+    def check_keyup_events(self, event):
+        if event.key == pygame.K_RIGHT:
+            self.ship.moving_right = False
+        if event.key == pygame.K_LEFT:
+            self.ship.moving_left = False
+
+
+    def fire_bullet(self):
+        """Create a new bullet and add it to the bullets group."""
+        if len(self.bullets) < self.settings.bullets_allowed: 
+            new_bullet = Bullet(self)
+            self.bullets.add(new_bullet)
+
+
+    def update_bullets(self):
+        """Update the position of bullets and remove old bullets"""
+        self.bullets.update()
+
+        # Check if any bullet has exited the screen and delete it.
+        # Loop over a copy, because we are modyfying the list as we go along
+        for bullet in self.bullets.copy(): 
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
+
+
+    def update_screen(self):
+        """Update images onscreen and flip to a new screen."""
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
+            
+        # Make the most recently drawn screen visible.
+        pygame.display.flip()
+
+
+if __name__ == "__main__":
+    """Make a game instance, and run the game."""
+    ai = AlienInvasion()
+    ai.run_game()
