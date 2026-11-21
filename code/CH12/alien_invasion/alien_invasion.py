@@ -2,6 +2,10 @@
 Alien Invasion.py
 
 Main file of the game
+
+NOTE: setting the framerate to 60 with clock.tick(60) as the book does,
+made the ship movement wonky on my PC, so I enabled vsync to make the
+game's framerate match my monitor's refresh rate and it worked better.
 """
 
 import sys
@@ -21,8 +25,8 @@ class AlienInvasion():
         self.clock = pygame.time.Clock()
         self.settings = Settings()
 
-        # Set fullscreen
-        self.screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+        # Set fullscreen with vsync governing framerate
+        self.screen = pygame.display.set_mode(pygame.display.get_desktop_sizes()[0], pygame.FULLSCREEN | pygame.SCALED, vsync=1)
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
 
@@ -47,7 +51,7 @@ class AlienInvasion():
             self.ship.update(self.dt)
             self.update_bullets()
             self.update_screen()
-            self.dt = self.clock.tick(60) / 1000 # Get seconds since last frame
+            self.dt = self.clock.tick(120) / 1000 # Get seconds since last frame
 
 
     def check_events(self):
