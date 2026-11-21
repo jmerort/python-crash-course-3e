@@ -9,7 +9,7 @@ class Ship:
         self.screen_rect = self.screen.get_rect()
 
         # Load the ship image and get its rect
-        self.image = pygame.image.load("images/ship.png")
+        self.image = pygame.image.load("images/ship.png").convert_alpha()
         self.rect = self.image.get_rect()
 
         # Start the ship at the bottom centre of the sceeen
@@ -29,11 +29,11 @@ class Ship:
         self.screen.blit(self.image, self.rect)
 
 
-    def update(self):
+    def update(self, dt):
         """Update the ship's position based on the movement flag."""
         if self.moving_right and self.rect.right < self.screen_rect.right:
-            self.x += self.settings.ship_speed
+            self.x += self.settings.ship_speed * dt
         if self.moving_left and self.rect.left > self.screen_rect.left:
-            self.x -= self.settings.ship_speed
+            self.x -= self.settings.ship_speed * dt
         
-        self.rect.x = self.x
+        self.rect.x = round(self.x)

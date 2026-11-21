@@ -8,11 +8,11 @@ from pygame.sprite import Sprite
 
 class Alien(Sprite):
     """Class to represent a single alien of the fleet"""
-    def __init__(self, ai_settings, screen):
+    def __init__(self, ai_game):
         """Initialize alien and set its starting position"""
         super().__init__()
-        self.ai_settings = ai_settings
-        self.screen = screen
+        self.settings = ai_game.settings
+        self.screen = ai_game.screen
 
         # Load the ship image and get its rect
         self.image = pygame.image.load("images/alien.png")
