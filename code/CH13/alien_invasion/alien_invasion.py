@@ -47,9 +47,15 @@ class AlienInvasion():
 
     def create_fleet(self):
         """Create a fleet of aliens."""
-        # Make an alien
-        alien = Alien(self)
-        self.aliens.add(alien)
+        # Make a row of aliens
+        alien_width = Alien(self).rect.width
+        screen_width = self.screen.get_rect().width - 2 * alien_width
+        current_x = alien_width
+        while current_x < screen_width:
+            alien = Alien(self)
+            alien.rect.x = current_x
+            self.aliens.add(alien)
+            current_x += 2 * alien_width
 
 
     def run_game(self):
