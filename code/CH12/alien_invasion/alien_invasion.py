@@ -40,12 +40,14 @@ class AlienInvasion():
 
     def run_game(self):
         """Start the main loop for the game."""
+        self.dt = 0
+
         while True:
             self.check_events()
-            self.ship.update()
+            self.ship.update(self.dt)
             self.update_bullets()
             self.update_screen()
-            self.clock.tick(60)
+            self.dt = self.clock.tick(60) / 1000 # Get seconds since last frame
 
 
     def check_events(self):
@@ -86,7 +88,7 @@ class AlienInvasion():
 
     def update_bullets(self):
         """Update the position of bullets and remove old bullets"""
-        self.bullets.update()
+        self.bullets.update(self.dt)
 
         # Check if any bullet has exited the screen and delete it.
         # Loop over a copy, because we are modyfying the list as we go along
