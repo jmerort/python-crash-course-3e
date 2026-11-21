@@ -44,6 +44,13 @@ class AlienInvasion():
             self.check_events()
             self.ship.update()
             self.bullets.update()
+
+            # Check if any bullet has exited the screen and delete it.
+            # Loop over a copy, because we are modyfying the list as we go along
+            for bullet in self.bullets.copy(): 
+                if bullet.rect.bottom <= 0:
+                    self.bullets.remove(bullet)
+
             self.update_screen()
             self.clock.tick(60)
 
