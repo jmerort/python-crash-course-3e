@@ -43,14 +43,7 @@ class AlienInvasion():
         while True:
             self.check_events()
             self.ship.update()
-            self.bullets.update()
-
-            # Check if any bullet has exited the screen and delete it.
-            # Loop over a copy, because we are modyfying the list as we go along
-            for bullet in self.bullets.copy(): 
-                if bullet.rect.bottom <= 0:
-                    self.bullets.remove(bullet)
-
+            self.update_bullets()
             self.update_screen()
             self.clock.tick(60)
 
@@ -89,6 +82,17 @@ class AlienInvasion():
         if len(self.bullets) < self.settings.bullets_allowed: 
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
+
+
+    def update_bullets(self):
+        """Update the position of bullets and remove old bullets"""
+        self.bullets.update()
+
+        # Check if any bullet has exited the screen and delete it.
+        # Loop over a copy, because we are modyfying the list as we go along
+        for bullet in self.bullets.copy(): 
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
 
 
     def update_screen(self):
