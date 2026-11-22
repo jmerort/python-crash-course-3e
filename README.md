@@ -3,7 +3,8 @@ Solutions to the 'TRY IT YOURSELF' excercises for the book "Python Crash Course"
 
 I will be posting here my solutions to the simple excercises that appear throughout this book, and also some notes. These are very simple programs with little to no use outside of the context of the textbook, but they might help somebody who is studying it. 
 
-At the top of each program, I have pasted the exercise statement, whose credit belongs to the book's author. Everything else I have written and can be used in any way.
+At the top of each program, I have pasted the exercise statement, whose credit belongs to the book's author. Everything else I have written and can be used in any way. The sprites for the pygame 
+programs here were drawn by me and can also be freely used.
 
 ## How to run the programs in a virtual environment
 To avoid problems with `pip` and package managements, I run all my programs from a virtual environment located in the root folder. This is relevant for the programs
