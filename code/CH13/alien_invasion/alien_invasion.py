@@ -76,6 +76,7 @@ class AlienInvasion():
             self.check_events()
             self.ship.update(self.dt)
             self.update_bullets()
+            self.update_aliens()
             self.update_screen()
             self.dt = self.clock.tick(120) / 1000 # Get seconds since last frame
 
@@ -125,6 +126,11 @@ class AlienInvasion():
         for bullet in self.bullets.copy(): 
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+
+
+    def update_aliens(self):
+        """Update the position of each alien of the fleet."""
+        self.aliens.update(self.dt)
 
 
     def update_screen(self):
