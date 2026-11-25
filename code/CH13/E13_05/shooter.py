@@ -1,22 +1,22 @@
 """
-alien.py
-Module that defines the Alien class
+shooter.py
+Module that defines the Shooter class
 """
 
 import pygame
 
-class Alien:
-    def __init__(self, ss_settings, screen):
-        """Initialize alien and set its starting position"""
-        self.ss_settings = ss_settings
-        self.screen = screen
+class Shooter:
+    def __init__(self, ss_game):
+        """Initialize shooter and set its starting position"""
+        self.settings = ss_game.settings
+        self.screen = ss_game.screen
 
-        # Load the alien image and get its rect
+        # Load the shooter image and get its rect
         self.image = pygame.image.load("images/alien_archer.png")
         self.rect = self.image.get_rect()
         self.screen_rect = self.screen.get_rect()
 
-        # Start the alien at the center left of the sceeen
+        # Start the shooter at the center left of the sceeen
         self.rect.centery = self.screen_rect.centery
         self.rect.left = self.screen_rect.left
         # Store the center as float, to allow speed increments
@@ -27,14 +27,14 @@ class Alien:
         self.moving_down = False
 
     def blitme(self):
-        """Draw the alien at its current location"""
+        """Draw the shooter at its current location"""
         self.screen.blit(self.image, self.rect)
 
-    def update(self):
+    def update(self, dt):
         if self.moving_up:
             if self.rect.top > self.screen_rect.top:
-                self.center -= self.ss_settings.alien_speed_factor
+                self.center -= self.settings.shooter_speed_factor * dt
         if self.moving_down:
             if self.rect.bottom < self.screen_rect.bottom:
-                self.center += self.ss_settings.alien_speed_factor
+                self.center += self.settings.shooter_speed_factor * dt
         self.rect.centery = self.center
