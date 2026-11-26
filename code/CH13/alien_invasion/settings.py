@@ -7,6 +7,7 @@ class Settings():
         self.bg_color = (20, 20, 35)
         # Ship settings
         self.ship_speed = 300 # speed in pixels/second
+        self.ship_limit = 3 # available ships in a game
         # Bullet settings
         self.bullet_speed = 400
         self.bullet_height = 15
