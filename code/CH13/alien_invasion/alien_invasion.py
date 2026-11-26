@@ -9,10 +9,12 @@ game's framerate match my monitor's refresh rate and it worked better.
 """
 
 import sys
+from time import sleep
 
 import pygame
 
 from settings import Settings
+from game_stats import GameStats
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
@@ -35,6 +37,9 @@ class AlienInvasion():
         #self.screen = pygame.display.set_mode(
         #        (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Alien Invasion")
+
+        # Create an instance to store game statistics.
+        self.stats = GameStats(self)
 
         self.ship = Ship(self) # Give an AlienInvasion instane as arg
         self.bullets = pygame.sprite.Group()
@@ -162,7 +167,29 @@ class AlienInvasion():
     def update_aliens(self):
         """Update the position of each alien of the fleet."""
         self.aliens.update(self.dt)
+        
+        # Check for alien-ship collisions
+        if pygame.sprite.spritecollideany(self.ship, self.aliens):
+            self.ship_hit()
+
         self.check_fleet_edges()
+
+
+    def ship_hit(self):
+        """Respond to the ship being hit by an alien."""
+        # Decrement ships left.
+        self.stats.ships_left -= 1
+
+        # Get rid of remaining bullets and aliens.
+        self.bullets.empty()
+        self.aliens.empty()
+
+        # Create new fleet and place the ship on the center.
+        self.create_fleet()
+        self.ship.center_ship()
+
+        # Pause
+        sleep(0.5)
 
 
     def update_screen(self):
