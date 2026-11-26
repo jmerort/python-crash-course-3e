@@ -157,6 +157,14 @@ class AlienInvasion():
                 break
 
 
+    def check_aliens_bottom(self):
+        """Check if any alien has reached the bottom of the screen."""
+        for alien in self.aliens:
+            if alien.rect.bottom >= self.settings.screen_height:
+                self.ship_hit()
+                break
+
+
     def change_fleet_direction(self):
         """Drop down the fleet and change it's movement direction."""
         for alien in self.aliens:
@@ -173,6 +181,7 @@ class AlienInvasion():
             self.ship_hit()
 
         self.check_fleet_edges()
+        self.check_aliens_bottom()
 
 
     def ship_hit(self):
