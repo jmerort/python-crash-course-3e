@@ -48,6 +48,9 @@ class AlienInvasion():
 
         # Set the background color
         self.bg_color = (230, 230, 230)
+        
+        # Start the game in an active state.
+        self.game_active = True
 
 
     def create_fleet(self):
@@ -79,9 +82,12 @@ class AlienInvasion():
 
         while True:
             self.check_events()
-            self.ship.update(self.dt)
-            self.update_bullets()
-            self.update_aliens()
+
+            if self.game_active:
+                self.ship.update(self.dt)
+                self.update_bullets()
+                self.update_aliens()
+            
             self.update_screen()
             self.dt = self.clock.tick(120) / 1000 # Get seconds since last frame
 
@@ -186,19 +192,22 @@ class AlienInvasion():
 
     def ship_hit(self):
         """Respond to the ship being hit by an alien."""
-        # Decrement ships left.
-        self.stats.ships_left -= 1
+        if self.stats.ships_left > 0:
+            # Decrement ships left.
+            self.stats.ships_left -= 1
 
-        # Get rid of remaining bullets and aliens.
-        self.bullets.empty()
-        self.aliens.empty()
+            # Get rid of remaining bullets and aliens.
+            self.bullets.empty()
+            self.aliens.empty()
 
-        # Create new fleet and place the ship on the center.
-        self.create_fleet()
-        self.ship.center_ship()
+            # Create new fleet and place the ship on the center.
+            self.create_fleet()
+            self.ship.center_ship()
 
-        # Pause
-        sleep(0.5)
+            # Pause
+            sleep(0.5)
+        else:
+            self.game_active = False
 
 
     def update_screen(self):
